@@ -13,7 +13,7 @@
 #
 # Author: Ahmed Mohamed Abdalla
 # Date: April 23, 2024
-# Version: 1.0
+# Version: 1.1
 ################################################################################
 
 # Set the path to the log file
