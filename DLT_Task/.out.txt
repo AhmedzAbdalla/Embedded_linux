@@ -1,2 +1,0 @@
-[2024-04-06 08:16:01] ERROR Unable to initialize network interface: eth0
-[2024-04-06 08:19:10] ERROR Disk write failure on device: /dev/sda1
