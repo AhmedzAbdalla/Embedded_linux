@@ -9,7 +9,7 @@
 #
 #
 # Example usage:
-#   ./DLT.sh  log
+#   ./DLT.sh  ./log
 #
 # Author: Ahmed Mohamed Abdalla
 # Date: April 23, 2024
@@ -17,7 +17,18 @@
 ################################################################################
 
 # Set the path to the log file
-path=$(pwd)/$1
+
+logfilename=$1
+logfilename2=""
+
+if [[ "$1" == *"./"* ]]; then
+   logfilename2=${logfilename:2}
+else
+   logfilename2=logfilename
+fi
+
+
+path=$(pwd)/$logfilename2
 
 # Initialize local_status to check file existence
 typeset -i local_status=0
@@ -25,7 +36,7 @@ typeset -i local_status=0
 
 # Check if the file exists and only one argument is provided
 if [ -f "$path" ] && [ "$#" -eq 1 ]; then
-   
+   echo $path
    local_status=1
 else
    echo "Invalid path to file"
@@ -38,11 +49,10 @@ function Log_Parsing()
 {
    typeset -i l_counter=1
 while IFS= read -r line; do
-   
    date=${line:1:10}
    time=${line:12:8}
 
-   echo -n "Record No."$l_counter-  date: "$date" time: "$time" >> $(pwd)/.out.txt
+   echo -n "Record No."$l_counter-  date: "$date" time: "$time" >> "$(pwd)"/.out.txt
 
    awk -v i=$l_counter  '{ \
                            if (NR== i) { \
@@ -55,14 +65,16 @@ while IFS= read -r line; do
                                        } \
                            
                            
-                        }' "$1" >> $(pwd)/.out.txt
+                        }' "$1" >> "$(pwd)"/.out.txt
 
 
    
    l_counter=$l_counter+1
-done < $1
+done < "$1"
 
 }
+
+#Log_Parsing "$path"
 
 # Function to filter log entries
 function Filter () {
