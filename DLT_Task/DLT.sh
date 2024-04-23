@@ -74,7 +74,6 @@ done < "$1"
 
 }
 
-#Log_Parsing "$path"
 
 # Function to filter log entries
 function Filter () {
