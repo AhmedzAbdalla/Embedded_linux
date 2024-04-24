@@ -39,7 +39,7 @@ if [ -f "$path" ] && [ "$#" -eq 1 ]; then
    echo $path
    local_status=1
 else
-   echo "Invalid path to file"
+   echo "File not exist!!"
 fi
 
 
